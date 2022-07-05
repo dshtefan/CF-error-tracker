@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  app:
+    build: app/
+    depends_on:
+      - postgres
+    environment:
+      acceptEULA: "YES"
+      installModules: "postgresql,caching "
+    ports:
+      - "8570:8500"
+  postgres:
+    build: postgres/
+    hostname: postgres
+    environment:
+      POSTGRES_PASSWORD: "123"
+      POSTGRES_DB: "getit"
+    ports:
+      - "5432:5432"
